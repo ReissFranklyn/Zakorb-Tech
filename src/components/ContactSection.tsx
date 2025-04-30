@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Twitter, Instagram, Github } from 'lucide-react';
 
 const ContactSection = () => {
   return (
@@ -15,75 +15,71 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="cyber-card">
-            <h3 className="text-xl font-bold text-white mb-6">Contact Information</h3>
+        <div className="max-w-4xl mx-auto">
+          <div className="cyber-card p-6 md:p-10">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">Contact Information</h3>
             
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="flex items-start">
-                <MapPin className="text-zarkorb-cyan mt-1 mr-4" size={20} />
+                <MapPin className="text-zarkorb-cyan mt-1 mr-4" size={24} />
                 <div>
-                  <p className="font-medium text-white">Global Offices</p>
-                  <p className="text-gray-300">London • Kyiv • Dubai</p>
+                  <p className="font-medium text-white">International Offices</p>
+                  <p className="text-gray-300">London</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <Mail className="text-zarkorb-cyan mt-1 mr-4" size={20} />
+                <Mail className="text-zarkorb-cyan mt-1 mr-4" size={24} />
                 <div>
                   <p className="font-medium text-white">Email Us</p>
-                  <p className="text-gray-300">contact@zarkorb.tech</p>
+                  <p className="text-gray-300">Info@zarkorb.co.uk</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <Phone className="text-zarkorb-cyan mt-1 mr-4" size={20} />
+                <Phone className="text-zarkorb-cyan mt-1 mr-4" size={24} />
                 <div>
                   <p className="font-medium text-white">Call Us</p>
-                  <p className="text-gray-300">+44 20 1234 5678</p>
+                  <p className="text-gray-300">+44 (0)7553 113774</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <Twitter className="text-zarkorb-cyan mt-1 mr-4" size={24} />
+                <div>
+                  <p className="font-medium text-white">Twitter</p>
+                  <p className="text-gray-300">
+                    <a href="https://x.com/zarkorb?s=21" target="_blank" rel="noopener noreferrer" className="hover:text-zarkorb-cyan transition-colors">
+                      @zarkorb
+                    </a>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <Instagram className="text-zarkorb-cyan mt-1 mr-4" size={24} />
+                <div>
+                  <p className="font-medium text-white">Instagram</p>
+                  <p className="text-gray-300">
+                    <a href="https://www.instagram.com/zarkorb?igsh=YzVlcWVodmtzazZ6" target="_blank" rel="noopener noreferrer" className="hover:text-zarkorb-cyan transition-colors">
+                      @zarkorb
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Github className="text-zarkorb-cyan mt-1 mr-4" size={24} />
+                <div>
+                  <p className="font-medium text-white">Github</p>
+                  <p className="text-gray-300">
+                    <a href="https://github.com/ReissFranklyn" target="_blank" rel="noopener noreferrer" className="hover:text-zarkorb-cyan transition-colors">
+                      @ReissFranklyn
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div className="cyber-card">
-            <h3 className="text-xl font-bold text-white mb-6">Send Us a Message</h3>
-            
-            <form className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-white mb-2">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full bg-zarkorb-grid border border-zarkorb-cyan/30 text-white rounded p-2 focus:border-zarkorb-cyan focus:outline-none"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-white mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full bg-zarkorb-grid border border-zarkorb-cyan/30 text-white rounded p-2 focus:border-zarkorb-cyan focus:outline-none"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-white mb-2">Message</label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full bg-zarkorb-grid border border-zarkorb-cyan/30 text-white rounded p-2 focus:border-zarkorb-cyan focus:outline-none"
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-zarkorb-cyan text-black font-bold py-2 rounded hover:bg-zarkorb-cyan/90 transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
           </div>
         </div>
       </div>

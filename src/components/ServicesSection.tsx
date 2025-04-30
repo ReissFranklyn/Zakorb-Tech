@@ -23,22 +23,22 @@ const ServicesSection = () => {
     {
       icon: <Globe size={36} />,
       title: "International Expansion",
-      description: "We help tech companies expand globally with culturally tailored, compliant solutions across borders."
+      description: "Accelerate your Web, E-Commerce, and Blockchain/DeFi ventures into new markets with culturally adapted, compliant solutions. From regulatory hurdles to localized user experiences, we ensure seamless cross-border growth."
     },
     {
       icon: <Code size={36} />,
       title: "Localized Development",
-      description: "Custom software development with multilingual interfaces and region-specific features."
+      description: "Build custom software, multilingual e-commerce platforms, and region-specific AI tools tailored to your audience. Our development integrates local preferences while scaling globally."
     },
     {
       icon: <Shield size={36} />,
       title: "GDPR & Compliance",
-      description: "Ensure your tech meets regulatory requirements across EU, MENA, and Asian markets."
+      description: "Navigate GDPR, financial regulations (for DeFi), and regional tech laws with confidence. We ensure your web apps, blockchain protocols, and automation tools meet EU, MEMA, and Asian standards."
     },
     {
       icon: <Database size={36} />,
       title: "Risk Modeling",
-      description: "Python-driven risk assessment and mitigation strategies for international operations."
+      description: "Leverage Python-powered analytics and AI to assess risks in international operations. Optimize your expansion strategy for e-commerce, DeFi, or automated workflows with data-backed insights."
     }
   ];
 

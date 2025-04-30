@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,10 +33,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
-          <a href="/" className="text-zarkorb-cyan font-orbitron text-2xl font-bold">
+          <img src="/logo.png" alt="Zarkorb Logo" className="w-14 h-14 mr-2" />
+          <Link to="/" className="text-zarkorb-cyan font-orbitron text-2xl font-bold">
             ZARKORB
             <span className="text-white text-xs ml-1 tracking-wider align-top">TECH</span>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
@@ -43,6 +45,7 @@ const Navbar = () => {
           <NavLink href="#services">Services</NavLink>
           <NavLink href="#case-studies">Case Studies</NavLink>
           <NavLink href="#team">Our Team</NavLink>
+          <Link to="/legal" className="font-medium transition-all duration-300 text-sm tracking-wide glitch-hover text-white hover:text-zarkorb-cyan">Legal</Link>
           <NavLink href="#contact" isButton>Contact Us</NavLink>
         </div>
 
@@ -62,6 +65,13 @@ const Navbar = () => {
             <MobileNavLink href="#services" onClick={() => setMobileMenuOpen(false)}>Services</MobileNavLink>
             <MobileNavLink href="#case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</MobileNavLink>
             <MobileNavLink href="#team" onClick={() => setMobileMenuOpen(false)}>Our Team</MobileNavLink>
+            <Link 
+              to="/legal" 
+              className="block py-2 text-white hover:text-zarkorb-cyan font-medium text-lg transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Legal
+            </Link>
             <MobileNavLink href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact Us</MobileNavLink>
           </div>
         </div>

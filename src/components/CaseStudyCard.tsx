@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 
 interface CaseStudyProps {
   title: string;
@@ -8,9 +9,10 @@ interface CaseStudyProps {
   description: string;
   imageSrc: string;
   index: number;
+  skills?: string[];
 }
 
-const CaseStudyCard = ({ title, subtitle, description, imageSrc, index }: CaseStudyProps) => {
+const CaseStudyCard = ({ title, subtitle, description, imageSrc, index, skills = [] }: CaseStudyProps) => {
   return (
     <div 
       className={cn(
@@ -22,11 +24,19 @@ const CaseStudyCard = ({ title, subtitle, description, imageSrc, index }: CaseSt
         <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{title}</h3>
         <p className="text-zarkorb-cyan font-medium mb-4">{subtitle}</p>
         <p className="text-gray-300 mb-6">{description}</p>
-        <div className="flex items-center">
-          <button className="px-4 py-2 text-sm bg-zarkorb-grid border border-zarkorb-cyan/30 text-zarkorb-cyan hover:bg-zarkorb-cyan/10 transition-colors rounded">
-            View Case Study
-          </button>
-        </div>
+        {skills.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {skills.map((skill, idx) => (
+              <Badge 
+                key={idx} 
+                variant="outline"
+                className="border-zarkorb-cyan text-zarkorb-cyan"
+              >
+                {skill}
+              </Badge>
+            ))}
+          </div>
+        )}
       </div>
       <div className="md:w-1/2 overflow-hidden rounded-md">
         <img 
