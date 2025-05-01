@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { useResponsiveGlobe } from '@/hooks/useResponsiveGlobe';
 
@@ -27,11 +28,11 @@ const GlobeVisualization = () => {
     // Locations for data streams - Removed Warsaw as requested
     const locations = [
       { name: 'London', x: 0.45, y: 0.35 },
-      { name: 'Kyiv', x: 0.55, y: 0.35 },
+      { name: 'Kyiv', x: 0.58, y: 0.38 },
       { name: 'Dubai', x: 0.6, y: 0.45 },
       { name: 'New York', x: 0.3, y: 0.4 },
       { name: 'Tokyo', x: 0.8, y: 0.4 },
-      { name: 'Paris', x: 0.48, y: 0.38 }
+      { name: 'Paris', x: 0.47, y: 0.36 }  // Updated Paris position to match its actual geographic location
     ];
     
     // Even brighter colors palette for better visibility, especially on mobile
@@ -205,36 +206,35 @@ const GlobeVisualization = () => {
         ctx.shadowBlur = 0; // Reset shadow
         
         // Improve text rendering for all city names
-        // Adjust text positioning based on location to prevent overlap
         const fontSize = isMobile ? 11 : 12;
         ctx.font = `bold ${fontSize}px Inter`;
         ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
         ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
         ctx.shadowBlur = 5;
         
-        // Custom positioning for each city to prevent text overlap
-        let textOffsetX = 10;
-        let textOffsetY = 4;
+        // Improved city label positioning - placing all labels much closer to their points
+        let textOffsetX = 0;
+        let textOffsetY = 0; // Default position right at the point
         
-        // Custom positioning per city
+        // City-specific label positioning to make all labels closer to their points
         if (location.name === 'London') {
-          textOffsetX = isMobile ? -50 : -50;
-          textOffsetY = isMobile ? -10 : -10;
+          textOffsetX = -15; // Much closer to actual point
+          textOffsetY = -10;
         } else if (location.name === 'New York') {
-          textOffsetX = isMobile ? -60 : -60;
-          textOffsetY = isMobile ? 15 : 15;
+          textOffsetX = -25; // Closer to actual point
+          textOffsetY = -10;
         } else if (location.name === 'Tokyo') {
-          textOffsetX = isMobile ? 10 : 10;
-          textOffsetY = isMobile ? -10 : -10;
+          textOffsetX = 10;
+          textOffsetY = -10;
         } else if (location.name === 'Dubai') {
-          textOffsetX = isMobile ? 10 : 10;
-          textOffsetY = isMobile ? 15 : 15;
+          textOffsetX = 10;
+          textOffsetY = -10;
         } else if (location.name === 'Paris') {
-          textOffsetX = isMobile ? 10 : 10;
-          textOffsetY = isMobile ? -15 : -15;
+          textOffsetX = 10; // Moved to the right of the point as indicated by red arrow
+          textOffsetY = 15; // Below the point, following the arrow direction
         } else if (location.name === 'Kyiv') {
-          textOffsetX = isMobile ? 10 : 10;
-          textOffsetY = isMobile ? 15 : 15;
+          textOffsetX = 10;
+          textOffsetY = -10;
         }
         
         ctx.fillText(location.name, x + textOffsetX, y + textOffsetY);

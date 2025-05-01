@@ -23,11 +23,11 @@ const ServicesSection = () => {
     {
       icon: <Globe size={36} />,
       title: "International Expansion",
-      description: "Accelerate your Web, E-Commerce, and Blockchain/DeFi ventures into new markets with culturally adapted, compliant solutions. From regulatory hurdles to localized user experiences, we ensure seamless cross-border growth."
+      description: "Accelerate your Web, E-Commerce, and Blockchain/DeFi ventures into new markets with culturally adapted, compliant solutions. From regulatory hurdles to localised user experiences, we ensure seamless cross-border growth."
     },
     {
       icon: <Code size={36} />,
-      title: "Localized Development",
+      title: "Localised Development",
       description: "Build custom software, multilingual e-commerce platforms, and region-specific AI tools tailored to your audience. Our development integrates local preferences while scaling globally."
     },
     {
@@ -38,7 +38,7 @@ const ServicesSection = () => {
     {
       icon: <Database size={36} />,
       title: "Risk Modeling",
-      description: "Leverage Python-powered analytics and AI to assess risks in international operations. Optimize your expansion strategy for e-commerce, DeFi, or automated workflows with data-backed insights."
+      description: "Leverage Python-powered analytics and AI to assess risks in international operations. Optimise your expansion strategy for e-commerce, DeFi, or automated workflows with data-backed insights."
     }
   ];
 
