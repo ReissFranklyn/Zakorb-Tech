@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useResponsiveGlobe } from '@/hooks/useResponsiveGlobe';
 
@@ -54,8 +53,8 @@ const GlobeVisualization = () => {
       color: string;
     }[] = [];
     
-    // Adjust density for mobile and larger screens
-    const connectionDensity = isMobile ? 0.5 : 0.4; // Higher density on mobile for better visibility
+    // Keep original density for desktop, adjust only for mobile
+    const connectionDensity = isMobile ? 0.3 : 0.4;
     
     for (let i = 0; i < locations.length; i++) {
       for (let j = i + 1; j < locations.length; j++) {
@@ -67,7 +66,7 @@ const GlobeVisualization = () => {
             from: i,
             to: j,
             progress: Math.random(),
-            speed: 0.002 + Math.random() * 0.006, // Keep the existing speed
+            speed: 0.002 + Math.random() * 0.006, // Keep original speed regardless of device
             color: randomColor
           });
         }
@@ -79,13 +78,17 @@ const GlobeVisualization = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Draw grid lines with brighter color
-      const gridCount = isMobile ? 10 : 14; // Fewer grid lines on mobile for cleaner look
+      const gridCount = isMobile ? 8 : 14; // Slightly more grid lines on mobile for better visibility
+      
+      // Calculate appropriate scale based on canvas dimensions
+      const scaleFactor = Math.min(canvas.width / 800, 1); 
+      const baseRadius = Math.min(canvas.width, canvas.height) * 0.42 * scaleFactor;
       
       // Draw horizontal grid lines (latitudes)
       for (let i = 1; i < gridCount; i++) {
         ctx.beginPath();
         const y = i / gridCount;
-        const radius = Math.sin(Math.PI * y) * Math.min(canvas.width, canvas.height) * 0.42;
+        const radius = Math.sin(Math.PI * y) * baseRadius;
         ctx.ellipse(
           canvas.width / 2,
           canvas.height / 2,
@@ -96,7 +99,7 @@ const GlobeVisualization = () => {
           Math.PI * 2
         );
         ctx.strokeStyle = colors.grid;
-        ctx.lineWidth = isMobile ? 2 : 1.5; // Thicker lines on mobile
+        ctx.lineWidth = 1.5; // Consistent line width
         ctx.stroke();
       }
       
@@ -106,14 +109,14 @@ const GlobeVisualization = () => {
         ctx.ellipse(
           canvas.width / 2,
           canvas.height / 2,
-          Math.min(canvas.width, canvas.height) * 0.42,
-          Math.min(canvas.width, canvas.height) * 0.42 * 0.35,
+          baseRadius,
+          baseRadius * 0.35,
           0,
           (i / gridCount) * Math.PI * 2,
           ((i + 0.5) / gridCount) * Math.PI * 2
         );
         ctx.strokeStyle = colors.grid;
-        ctx.lineWidth = isMobile ? 2 : 1.5; // Thicker lines on mobile
+        ctx.lineWidth = 1.5;
         ctx.stroke();
       }
       
@@ -131,8 +134,8 @@ const GlobeVisualization = () => {
         ctx.beginPath();
         ctx.moveTo(fromX, fromY);
         ctx.lineTo(toX, toY);
-        ctx.strokeStyle = connection.color.replace(')', ', 0.4)').replace('rgb', 'rgba'); // More visible connections
-        ctx.lineWidth = isMobile ? 2 : 1.5; // Thicker lines on mobile
+        ctx.strokeStyle = connection.color.replace(')', ', 0.4)').replace('rgb', 'rgba');
+        ctx.lineWidth = 1.5;
         ctx.stroke();
         
         // Update connection progress
@@ -146,19 +149,21 @@ const GlobeVisualization = () => {
         const packetY = fromY + (toY - fromY) * connection.progress;
         
         ctx.beginPath();
-        ctx.arc(packetX, packetY, isMobile ? 4 : 3.5, 0, Math.PI * 2); // Larger packets on mobile
+        ctx.arc(packetX, packetY, isMobile ? 3.5 : 3.5, 0, Math.PI * 2);
         ctx.fillStyle = connection.color;
         ctx.fill();
       });
       
+      // Show ALL locations on both mobile and desktop
       // Draw locations
       locations.forEach((location, idx) => {
         const x = canvas.width * location.x;
         const y = canvas.height * location.y;
         
-        // Draw location ripples (multiple for depth effect)
-        for (let i = 3; i >= 1; i--) {
-          const pulseSize = isMobile ? 8 + Math.sin(Date.now() * 0.003 + idx) * 5 : 6 + Math.sin(Date.now() * 0.003 + idx) * 4;
+        // Draw location ripples (reduced for mobile)
+        const rippleCount = isMobile ? 2 : 3;
+        for (let i = rippleCount; i >= 1; i--) {
+          const pulseSize = 6 + Math.sin(Date.now() * 0.003 + idx) * (isMobile ? 3 : 4);
           ctx.beginPath();
           ctx.arc(x, y, pulseSize * i, 0, Math.PI * 2);
           
@@ -167,7 +172,7 @@ const GlobeVisualization = () => {
             x, y, 0,
             x, y, pulseSize * i
           );
-          gradient.addColorStop(0, `rgba(0, 255, 224, ${0.8 / i})`); // Brighter ripple
+          gradient.addColorStop(0, `rgba(0, 255, 224, ${0.8 / i})`);
           gradient.addColorStop(1, 'rgba(0, 255, 224, 0)');
           
           ctx.fillStyle = gradient;
@@ -176,12 +181,12 @@ const GlobeVisualization = () => {
         
         // Draw location point
         ctx.beginPath();
-        ctx.arc(x, y, isMobile ? 7 : 6, 0, Math.PI * 2); // Larger points on mobile
+        ctx.arc(x, y, isMobile ? 5 : 6, 0, Math.PI * 2);
         
         // Gradient for location points
         const pointGradient = ctx.createRadialGradient(
           x, y, 0,
-          x, y, isMobile ? 7 : 6
+          x, y, isMobile ? 5 : 6
         );
         pointGradient.addColorStop(0, '#FFFFFF');
         pointGradient.addColorStop(0.7, colors.primary);
@@ -192,19 +197,47 @@ const GlobeVisualization = () => {
         
         // Add glow effect
         ctx.beginPath();
-        ctx.arc(x, y, isMobile ? 7 : 6, 0, Math.PI * 2);
+        ctx.arc(x, y, isMobile ? 5 : 6, 0, Math.PI * 2);
         ctx.shadowColor = colors.primary;
-        ctx.shadowBlur = isMobile ? 20 : 15; // Stronger glow on mobile
+        ctx.shadowBlur = isMobile ? 12 : 15;
         ctx.fillStyle = 'rgba(0, 255, 224, 0.8)';
         ctx.fill();
         ctx.shadowBlur = 0; // Reset shadow
         
-        // Draw location name with better visibility - adjust text size for mobile
-        ctx.font = isMobile ? 'bold 14px Inter' : 'bold 12px Inter'; // Larger text on mobile
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-        ctx.shadowBlur = 4;
-        ctx.fillText(location.name, x + 10, y + 4);
+        // Improve text rendering for all city names
+        // Adjust text positioning based on location to prevent overlap
+        const fontSize = isMobile ? 11 : 12;
+        ctx.font = `bold ${fontSize}px Inter`;
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+        ctx.shadowBlur = 5;
+        
+        // Custom positioning for each city to prevent text overlap
+        let textOffsetX = 10;
+        let textOffsetY = 4;
+        
+        // Custom positioning per city
+        if (location.name === 'London') {
+          textOffsetX = isMobile ? -50 : -50;
+          textOffsetY = isMobile ? -10 : -10;
+        } else if (location.name === 'New York') {
+          textOffsetX = isMobile ? -60 : -60;
+          textOffsetY = isMobile ? 15 : 15;
+        } else if (location.name === 'Tokyo') {
+          textOffsetX = isMobile ? 10 : 10;
+          textOffsetY = isMobile ? -10 : -10;
+        } else if (location.name === 'Dubai') {
+          textOffsetX = isMobile ? 10 : 10;
+          textOffsetY = isMobile ? 15 : 15;
+        } else if (location.name === 'Paris') {
+          textOffsetX = isMobile ? 10 : 10;
+          textOffsetY = isMobile ? -15 : -15;
+        } else if (location.name === 'Kyiv') {
+          textOffsetX = isMobile ? 10 : 10;
+          textOffsetY = isMobile ? 15 : 15;
+        }
+        
+        ctx.fillText(location.name, x + textOffsetX, y + textOffsetY);
         ctx.shadowBlur = 0; // Reset shadow
       });
       

@@ -108,7 +108,7 @@ const Index = () => {
                 </a>
               </div>
             </div>
-            <div className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[450px] lg:h-[600px] animate-fade-in" style={{ animationDelay: '0.8s' }}>
+            <div className="w-full md:w-1/2 h-[300px] xs:h-[350px] sm:h-[400px] md:h-[450px] lg:h-[550px] animate-fade-in" style={{ animationDelay: '0.8s' }}>
               <GlobeVisualization />
             </div>
           </div>
