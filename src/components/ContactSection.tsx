@@ -23,7 +23,7 @@ const ContactSection = () => {
               <div className="flex items-start">
                 <MapPin className="text-zarkorb-cyan mt-1 mr-4" size={24} />
                 <div>
-                  <p className="font-medium text-white">International Offices</p>
+                  <p className="font-medium text-white">Main Office</p>
                   <p className="text-gray-300">London, United Kingdom</p>
                 </div>
               </div>
