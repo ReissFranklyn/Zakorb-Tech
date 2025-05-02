@@ -24,7 +24,7 @@ const ContactSection = () => {
                 <MapPin className="text-zarkorb-cyan mt-1 mr-4" size={24} />
                 <div>
                   <p className="font-medium text-white">International Offices</p>
-                  <p className="text-gray-300">London</p>
+                  <p className="text-gray-300">London, United Kingdom</p>
                 </div>
               </div>
               
@@ -35,14 +35,14 @@ const ContactSection = () => {
                   <p className="text-gray-300">Info@zarkorb.co.uk</p>
                 </div>
               </div>
-              
+{/*               
               <div className="flex items-start">
                 <Phone className="text-zarkorb-cyan mt-1 mr-4" size={24} />
                 <div>
                   <p className="font-medium text-white">Call Us</p>
                   <p className="text-gray-300">+44 (0)7553 113774</p>
                 </div>
-              </div>
+              </div> */}
               
               <div className="flex items-start">
                 <Twitter className="text-zarkorb-cyan mt-1 mr-4" size={24} />
