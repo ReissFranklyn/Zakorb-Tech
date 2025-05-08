@@ -172,7 +172,7 @@ const TeamSection = () => {
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">Reiss Franklyn</h3>
+              <h3 className="text-xl font-bold text-white mb-2">Reiss</h3>
               <p className="text-zarkorb-cyan mb-3">Founder & CEO</p>
               <p className="text-gray-300 mb-4">
                 BSc International Relations & Languages – Architecting compliance-driven tech for international markets.

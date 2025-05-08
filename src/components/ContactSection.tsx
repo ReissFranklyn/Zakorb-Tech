@@ -73,8 +73,8 @@ const ContactSection = () => {
                 <div>
                   <p className="font-medium text-white">Github</p>
                   <p className="text-gray-300">
-                    <a href="https://github.com/ReissFranklyn" target="_blank" rel="noopener noreferrer" className="hover:text-zarkorb-cyan transition-colors">
-                      @ReissFranklyn
+                    <a href="https://github.com/RhysZarkorb" target="_blank" rel="noopener noreferrer" className="hover:text-zarkorb-cyan transition-colors">
+                      @RhysZarkorb
                     </a>
                   </p>
                 </div>
